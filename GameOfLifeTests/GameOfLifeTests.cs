@@ -131,7 +131,7 @@ namespace GameOfLifeTests
             string all_text;
             string result_all_test;
 
-            using (var input = new StreamReader("sample_input_larger_grid.txt"))
+            using (var input = new StreamReader(_largerGridFilePath))
             {
                 all_text = input.ReadToEnd();
             }
@@ -143,7 +143,7 @@ namespace GameOfLifeTests
                 game.Evolve();
             }
 
-            using (var input = new StreamReader("sample_input_larger_grid_result.txt"))
+            using (var input = new StreamReader(_largerGridCorrectResultPath))
             {
                 result_all_test = input.ReadToEnd();
             }

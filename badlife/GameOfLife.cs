@@ -64,12 +64,10 @@ namespace badlife
 
         public void Evolve()
         {
-            var cols = _world.Value.Length;
-
             //use three buffers rather than create another 2-D array
-            bool[] bufferLine0 = new bool[cols];
-            bool[] buffer1 = new bool[cols];
-            bool[] buffer2 = new bool[cols];
+            bool[] bufferLine0 = new bool[Columns];
+            bool[] buffer1 = new bool[Columns];
+            bool[] buffer2 = new bool[Columns];
 
             int row = 1;
 
@@ -79,12 +77,12 @@ namespace badlife
                 //first line is last line's neighbour.
                 GenerateBufferForLine((_=>true), 0, ref bufferLine0);
 
-                while (row <= cols + 1)
+                while (row <= Columns + 1)
                 {
                     UpdateGridWithBuffer((i => i > 2 && row % 2 == 1), ref buffer1, row);
                     UpdateGridWithBuffer((i => i > 2 && row % 2 == 0), ref buffer2, row);
-                    GenerateBufferForLine((i => i % 2 == 1 && i < cols), row, ref buffer1);
-                    GenerateBufferForLine((i => i % 2 == 0 && i < cols), row, ref buffer2);
+                    GenerateBufferForLine((i => i % 2 == 1 && i < Columns), row, ref buffer1);
+                    GenerateBufferForLine((i => i % 2 == 0 && i < Columns), row, ref buffer2);
                     row++;
                 }
 
